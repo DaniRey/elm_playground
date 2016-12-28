@@ -1,6 +1,7 @@
 port module ListBasics exposing (..)
 
 import Html exposing (..)
+import List
 
 numbers = [1,2,3,4,5,6]
 
@@ -9,9 +10,9 @@ viewNumber num =
     li [] [text (toString num)]
 
 --change the following lines, such that they adhere to their names
-evenNumbers = numbers
-squaredNumbers = numbers
-sum = numbers
+evenNumbers = List.filter (\n -> n % 2 == 0) numbers
+squaredNumbers = List.map (\n -> n * n) numbers
+sum = List.foldl (\x -> \y -> x + y) 0 numbers
 
 view = div []
               [
@@ -20,7 +21,7 @@ view = div []
               p [] [text (toString numbers)],
               h2 [] [text "evenNumbers"],
               p [] [text (toString evenNumbers)],
-              h2 [] [text "squaredNumbes"],
+              h2 [] [text "squaredNumbers"],
               p [] [text (toString squaredNumbers)],
               h2 [] [text "sum"],
               p [] [text (toString sum)],
